@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="/main.css" rel="stylesheet">
+</head>
+<body>
+
+<div th:replace="~{ nav.html ::navbar }"> </div>
+
+<div class="detail">
+    <h4>상세페이지</h4>
+    <img th:src="${data.imgUrl != null ? data.imgUrl : 'https://placehold.co/300'}"
+         alt="상품이미지"/>
+    <form action="/sales" method="POST">
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+    <h4 th:text="${data.title}"></h4>
+    <p th:text="${#numbers.formatInteger(data.price, 3, 'COMMA') + ' ₩'}"></p>
+    <input type="hidden" name="itemId" th:value="${data.id}" />
+
+    <button class="naver-buy-btn">
+        <span class="naver-icon">N</span>구매하기
+    </button>
+    </form>
+</div>
+<div class="form-hint" th:if="${param.ordered}"
+     style="font-size: 18px; font-weight: 600; text-align: center; margin-top: 20px; color: #00bbff;">
+    주문이 완료되었습니다!
+</div>
+
+
+
+
+<div class="comment-box">
+<form class="comment-form" action="/comment" method="POST">
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+    <input name="content" placeholder="댓글 입력"  class="comment-input" maxlength="1000" required>
+    <input type="hidden" name="parentId" th:value="${data.id}">
+    <input type="hidden" name="parentTitle" th:value="${data.title}">
+    <button type="submit" class="comment-btn">댓글 등록</button>
+</form>
+</div>
+<!-- 댓글 목록 표시 -->
+<div class="comment-list">
+    <h4>댓글</h4>
+    <ul>
+        <li th:each="c : ${comments}" class="comment-item">
+            <div class="comment-meta">
+                <span class="comment-username" th:text="${c.username}"></span>
+                <span class="comment-date" th:text="${#temporals.format(c.createdAt, 'yyyy-MM-dd HH:mm')}"></span>
+                <!-- 관리자거나 본인 댓글이면 "삭제" 버튼 표시 -->
+                <form th:if="${#authorization.expression('hasRole(''ADMIN'')') or c.username == #authentication.name}" action="/comment/delete" method="post" style="display:inline;">
+                    <input type="hidden" name="id" th:value="${c.id}">
+                    <input type="hidden" name="parentId" th:value="${c.parentId}">
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+                    <button class="comment-delete" type="submit">삭제</button>
+                </form>
+            </div>
+            <div class="comment-content" th:text="${c.content}"></div>
+        </li>
+    </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="/main.css" rel="stylesheet">
+</head>
+<body>
+
+<div th:replace="~{ nav.html ::navbar }"> </div>
+
+<div class="order-list-container">
+    <h2>주문 목록 조회 (관리자 전용)</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>주문번호</th>
+            <th>회원 아이디</th>
+            <th>상품명</th>
+            <th>수량</th>
+            <th>주문일자</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="order : ${orderList}">
+            <td th:text="${order.id}"></td>
+            <td th:text="${order.member.username}"></td>
+            <td th:text="${order.itemName}"></td>
+            <td th:text="${order.count}"></td>
+            <td th:text="${#temporals.format(order.created, 'yyyy-MM-dd HH:mm')}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

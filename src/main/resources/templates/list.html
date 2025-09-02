@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="/main.css" rel="stylesheet">
+</head>
+<body>
+
+<div th:replace="~{ nav.html ::navbar }"> </div>
+
+<form action="/search" method="GET">
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+    <input name="searchText" style="display:inline">
+    <button type="submit">검색</button>
+</form>
+
+<div class="card" th:each="i : ${items}">
+    <a th:href="@{'/detail/' + ${i.id} }">
+        <img th:src="${i.imgUrl != null ? i.imgUrl : 'https://placehold.co/300'}"
+            alt="상품이미지"/></a>
+    <div>
+        <a th:href="@{'/detail/' + ${i.id} }"><h4 th:text="${i.title}"></h4></a>
+        <a th:href="@{'/detail/' + ${i.id} }"><p th:text="${#numbers.formatInteger(i.price, 3, 'COMMA') + ' ₩'}"></p></a>
+        <br>
+        <!-- 관리자 또는 작성자일 경우만 수정 아이콘 표시 -->
+        <a th:if="${#authorization.expression('hasRole(''ADMIN'')') or i.username == #authentication.name}"
+           th:href="@{'/edit/' + ${i.id}}">✏️</a>
+        <span th:if="${#authorization.expression('hasRole(''ADMIN'')') or i.username == #authentication.name}"
+                style="cursor: pointer" th:inline="javascript"
+              th:onclick="|fetch('/delete?id=' + [[${i.id}]], {method : 'DELETE'})
+                        .then(r => r.text())
+                        .then(() => {location.reload();})|">
+  🗑️
+</span>
+    </div>
+</div>
+
+
+<div class="pagination">
+    <a th:if="${searchText != null}"
+       th:href="@{/search(searchText=${searchText}, page=${prevGroupPage})}">&lt;</a>
+    <a th:if="${searchText == null}"
+       th:href="@{'/list/page/' + ${prevGroupPage}}">&lt;</a>
+
+    <!-- 페이지 번호 반복 -->
+    <span th:each="i : ${#numbers.sequence(startPage, endPage)}">
+    <a th:if="${searchText != null}"
+       th:href="@{/search(searchText=${searchText}, page=${i})}"
+       th:text="${i}"
+       th:classappend="${i == currentPage} ? ' active' : ''"></a>
+
+    <a th:if="${searchText == null}"
+       th:href="@{'/list/page/' + ${i}}"
+       th:text="${i}"
+       th:classappend="${i == currentPage} ? ' active' : ''"></a>
+  </span>
+
+    <a th:if="${searchText != null}"
+       th:href="@{/search(searchText=${searchText}, page=${nextGroupPage})}">&gt;</a>
+    <a th:if="${searchText == null}"
+       th:href="@{'/list/page/' + ${nextGroupPage}}">&gt;</a>
+</div>
+
+
+</body>
+</html>

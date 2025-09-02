@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>마이페이지</title>
+    <link href="/main.css" rel="stylesheet">
+</head>
+<body>
+<div th:replace="~{ nav.html ::navbar }"></div>
+
+<div class="form-wrap mypage-box">
+    <h2>마이페이지</h2>
+    <div th:if="${member != null}">
+        <div class="mypage-row">
+            <span class="mypage-label">나의 아이디</span>
+            <span th:text="${member.username}"></span>
+        </div>
+        <div class="mypage-row">
+            <span class="mypage-label">나의 이메일</span>
+            <span th:text="${member.email}"></span>
+        </div>
+        <div class="mypage-row">
+            <span class="mypage-label">나의 가입일자</span>
+            <span th:text="${member.createdAt}"></span>
+        </div>
+        <div class="mypage-grade">
+            고객님의 등급은
+            <b th:if="${member.role == 'ADMIN'}">관리자 입니다</b>
+            <b th:if="${member.role == 'USER'}">일반유저 입니다</b>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

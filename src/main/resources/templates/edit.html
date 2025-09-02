@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="/main.css" rel="stylesheet">
+</head>
+<body>
+<div th:replace="~{ nav.html ::navbar }"> </div>
+
+
+<div class="form-wrap">
+    <h2>상품 수정</h2>
+    <form action="/edit" method="post" autocomplete="off">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+        <input type="hidden" name="id" th:value="${data.id}">
+        <input class="form-input" name="title" th:value="${data.title}" placeholder="상품명">
+        <div th:if="${error1}" style="color:red; font-size:0.9em;">
+            <span th:text="${error1}"></span>
+        </div>
+        <input class="form-input" name="price" th:value="${data.price}" placeholder="상품 가격">
+        <div th:if="${error2}" style="color:red; font-size:0.9em;">
+            <span th:text="${error2}"></span>
+        </div>
+        <input class="form-input" name="count" type="number" min="0" th:value="${data.count}" placeholder="재고(수량)">
+
+        <div class="image-upload">
+            <div class="image-preview" id="imagePreview">
+        <span class="preview-placeholder"
+              th:if="${data.imgUrl == null or #strings.isEmpty(data.imgUrl)}">미리보기</span>
+                <img id="previewImg"
+                     th:src="${data.imgUrl}"
+                     th:style="${(data.imgUrl == null or #strings.isEmpty(data.imgUrl))} ? 'display:none' : 'display:block'">
+            </div>
+            <div th:if="${error3}" style="color:red; font-size:0.9em;">
+                <span th:text="${error3}"></span>
+            </div>
+            <label class="file-btn">
+                이미지 업로드
+                <input type="file" onchange="getURL(this)">
+            </label>
+            <input type="hidden" name="imgUrl" id="imgUrl" th:value="${data.imgUrl}">
+        </div>
+
+        <button class="btn btn-blue form-btn" type="submit">수정 완료</button>
+    </form>
+</div>
+<script>
+    async function getURL(e){
+        let file = e.files[0];
+
+        const maxSize = 10 * 1024 * 1024;
+    if (file.size > maxSize) {
+        alert("이미지 파일 크기는 10MB를 초과할 수 없습니다.");
+        e.value = "";
+        return;
+    }
+        let name = encodeURIComponent(file.name);
+        let result = await fetch('/presigned-url?filename=' + name);
+        result = await result.text();
+
+    let UploadResult = await fetch(result, {
+            method: 'PUT',
+            body: e.files[0]
+        });
+
+        const previewImg = document.getElementById('previewImg');
+        const placeholder = document.querySelector('.preview-placeholder');
+        const imgUrlInput = document.getElementById('imgUrl');
+
+    console.log(UploadResult.url.split("?")[0])
+    if (UploadResult.ok) {
+      document.querySelector('img').src = UploadResult.url.split("?")[0]
+      const cleanUrl = UploadResult.url.split("?")[0];
+
+      imgUrlInput.value = cleanUrl;
+      previewImg.style.display = 'block';
+      if (placeholder) {
+        placeholder.style.display = 'none';
+        }
+    }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<div class="nav" th:fragment="navbar" xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="nav-left">
+        <a class="logo" href="/">SpringMall</a>
+        <a href="/list">List</a>
+        <li style="list-style: none;" th:if="${#authentication.principal != null and #authorization.expression('hasRole(''ADMIN'')')}">
+        <a href="/write">Write</a>
+        </li>
+    </div>
+    <div class="nav-right">
+        <div sec:authorize="isAuthenticated()" class="nav-info">
+
+            <li style="list-style: none;" sec:authorize="hasRole('ADMIN')">
+                <a  href="/orderList">주문 목록 조회</a>
+            </li>
+            <span sec:authentication="principal.username" class="username"></span>님, 환영합니다!
+            <a href="/mypage" class="btn btn-gray">마이페이지</a>
+            <form th:action="@{/logout}" method="post" style="display:inline;">
+                <button type="submit" class="btn btn-blue">로그아웃</button>
+            </form>
+        </div>
+        <div sec:authorize="isAnonymous()">
+            <a href="/login" class="btn btn-blue">로그인</a>
+        </div>
+        <a href="/signup" class="btn btn-border">회원가입</a>
+    </div>
+</div>
