@@ -20,7 +20,7 @@
 
 <div class="card" th:each="i : ${items}">
     <a th:href="@{'/detail/' + ${i.id} }">
-        <img th:src="${i.imgUrl != null ? i.imgUrl : 'https://placehold.co/300'}"
+        <img class="product-image" th:src="${i.imgUrl != null ? i.imgUrl : 'https://placehold.co/300'}"
             alt="상품이미지"/></a>
     <div>
         <a th:href="@{'/detail/' + ${i.id} }"><h4 th:text="${i.title}"></h4></a>

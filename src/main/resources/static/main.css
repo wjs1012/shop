@@ -528,3 +528,9 @@ image-upload {
     color: #333;
     font-weight: bold;
 }
+/* 상품 목록 사진 사이즈 조절 */
+.product-image {
+  width: 150px !important;
+  height: 150px !important;
+  object-fit: cover !important;
+}
