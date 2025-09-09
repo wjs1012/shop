@@ -194,8 +194,147 @@ image-upload {
     background: #fff;
     box-shadow: 0 2px 8px rgba(80,80,100,0.08);
     font-family: 'Montserrat', sans-serif;
+    position: relative;
+    z-index: 10000;
+    /*flex-wrap: nowrap; */
 }
-.nav-left, .nav-right { display: flex; align-items: center; gap: 20px; }
+.nav-left, .nav-right {
+display: flex;
+align-items: center;
+gap: 20px;
+flex-basis: auto;
+}
+
+/* 햄버거 버튼 기본 스타일 */
+.nav-toggle {
+    display: none;
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    z-index: 1100; /* 충분히 큰 값으로 다른 요소 위에 표시 */
+}
+
+/* PC 메뉴 기본 노출, 모바일에서 숨김 */
+.pc-menu {
+  display: flex;
+}
+.mobile-menu {
+  display: none;
+}
+
+/* 모바일 전용 로고 + 햄버거 버튼 */
+.nav-mobile-left {
+    display: none;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+/* 모바일에서 적용 */
+@media (max-width: 768px) {
+    /* PC 메뉴 숨김 */
+    .pc-menu {
+        display: none;
+    }
+    .nav {
+        padding-left: 0;
+        padding-right: 0;
+      }
+      .nav-mobile-left {
+          display: flex !important;
+                  justify-content: space-between !important;
+                  align-items: center !important;
+                  width: 100vw !important;  /* 뷰포트 전체 너비 강제 지정 */
+                  padding-left: 0 !important;
+                  padding-right: 0 !important;
+                  margin-left: 0 !important;
+                  margin-right: 0 !important;
+                  box-sizing: border-box;
+  }
+
+  .nav-toggle {
+      display: block !important;
+              margin: 0 !important;
+              padding: 0 !important;
+              flex-shrink: 0 !important;
+              font-size: 28px !important;
+              order: 2; /* 버튼을 오른쪽 끝 순서로 강제 설정 */
+              cursor: pointer;
+              background: none;
+              border: none;
+              position: relative;
+              z-index: 1100;
+              margin-right: 20px !important;
+    }
+
+.nav-mobile-left .logo {
+   margin: 0 !important;
+           order: 1; /* 로고는 왼쪽 끝 순서 */
+  }
+
+    /* 햄버거 버튼 보이기 */
+    .nav-toggle {
+        font-size: 28px;
+                cursor: pointer;
+                background: none;
+                border: none;
+                display: block !important;
+                position: relative;
+                z-index: 1100;
+    }
+
+    /* 모바일 햄버거 메뉴 스타일 (우측에서 슬라이드 가능) */
+    .mobile-menu {
+        display: none;
+        flex-direction: column;
+        position: fixed; /* 화면 우측 고정 */
+        top: 0;
+        right: 0;
+        height: 100vh;
+        width: 250px;
+        background-color: #fff;
+        box-shadow: -3px 0 8px rgba(0, 0, 0, 0.15);
+        padding: 60px 20px 20px;
+        z-index: 12000;
+        overflow-y: auto;
+        transition: transform 0.3s ease;
+        transform: translateX(100%);
+    }
+
+    /* 메뉴 활성화 시 화면 보이기 */
+    .mobile-menu.active {
+        display: flex;
+        transform: translateX(0);
+    }
+
+    /* 모바일 메뉴 항목 */
+    .mobile-menu a,
+    .mobile-menu form button {
+        padding: 12px 16px;
+        border-bottom: 1px solid #ddd;
+        color: #303030;
+        text-decoration: none;
+        font-weight: 600;
+        background: none;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        text-align: left;
+        white-space: nowrap;
+        transition: background-color 0.2s;
+    }
+
+    .mobile-menu a:hover,
+    .mobile-menu form button:hover {
+        background-color: #f1f5fa;
+        color: #007bff;
+    }
+}
+
 .nav a {
     color: #333333;
     text-decoration: none;
@@ -203,7 +342,12 @@ image-upload {
     font-size: 16px;
     transition: color 0.3s ease;
 }
-.nav a:hover, .nav button:hover { background: #f1f5fa; color: #007bff; }
+
+.nav a:hover, .nav button:hover {
+background: #f1f5fa;
+color: #007bff;
+}
+
 .nav a, .nav button {
     text-decoration: none;
     border: none;
