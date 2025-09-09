@@ -34,7 +34,7 @@
     </div>
 
     <!-- 모바일 전용 햄버거 메뉴 -->
-    <nav id="mobile-menu" class="mobile-menu" hidden>
+    <nav id="mobile-menu" class="mobile-menu">
         <a href="/list">List</a>
         <a th:if="${#authorization.expression('hasRole(''ADMIN'')')}" href="/write">Write</a>
         <a sec:authorize="hasRole('ADMIN')" href="/orderList">주문 목록 조회</a>
