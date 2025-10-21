@@ -1,9 +1,12 @@
 package com.apple.shop;
 
 <!--
+개발일지
+
 로그인 유무에 따른 페이지를 접속 하였을 때
 컨트롤러에서 통제할 시 그냥 페이지가 튕겨나오는게 유저가 알수 없고 매정하다고 생각해서
-타임리프에서 auth조건을 걸어 보여주는걸 온오프 했었다 (URL로 직접 접근하면 노출 위험이 있다.
+타임리프에서 auth조건을 걸어 보여주는걸 온오프 했었다 (URL로 직접 접근하면 노출 위험이 있다고 한다.)
+[참고용 복붙]
 1) 민감 정보 노출 위험
 서버에서 페이지 전체 데이터를 미리 내려주고,
 화면에서 div로 가려버리는 구조라면
@@ -27,46 +30,15 @@ URL만 알면
 만약 JS나 브라우저 확장프로그램 등으로
 div를 강제로 보이게 하면
 원래 숨겨야 할 정보가 노출될 수 있음.)
-       하지만 그냥 컨트롤러에서 ?needLogin 쿼리 파라미터를 써서
-       리다이렉트 로그인 페이지로 돌아갈 때 따로 멘트를 적는 방식을 사용하게 됐다
+
+
+하지만 그냥 컨트롤러에서 ?needLogin 쿼리 파라미터를 써서
+리다이렉트 로그인 페이지로 돌아갈 때 따로 멘트를 적는 방식을 사용하게 됐다
 성공을 if에 두고 리다이렉트를 빼는 방식이었는데
 예외를 if에 두는 방식이 더 많이 쓰인다고해서 반대로 뒤집음
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-if (auth != null) {
-       System.out.println(auth.getAuthorities().contains(new SimpleGrantedAuthority("일반유저")));
-String username = auth.getName();
-Member member = memberRepository.findByUsername(username)
-       .orElseThrow(() -> new RuntimeException("회원 정보 없음"));
-MemberDTO dto = new MemberDTO(
-       member.getUsername(),
-       member.getEmail(),
-       member.getCreatedAt()
-);
-           model.addAttribute("member", dto);
-           return "mypage";
-                   }
-                   return "redirect:/login?needLogin";
-                   }
-                   //에서
-                   @GetMapping("/mypage")
-                   public String myPage(Authentication auth, Model model) {
-                       if (auth == null) {
-                           return "redirect:/login?needLogin";
-                       }
-                       String username = auth.getName();
-                       Member member = memberRepository.findByUsername(username)
-                               .orElseThrow(() -> new RuntimeException("회원 정보 없음"));
-                       MemberDTO dto = new MemberDTO(
-                               member.getUsername(),
-                               member.getEmail(),
-                               member.getCreatedAt()
-                       );
-                       model.addAttribute("member", dto);
-                       return "mypage";
-                   }
 
 Page와 Slice에 대한 고민
-슬라이드스는 끝페이지 조회가 안되어서 교육용으론 페이지 사용하기로
+슬라이스는 끝페이지 조회가 안되어서 교육용으론 페이지 사용하기로
 
 리스트 하단에 페이지 버튼 만들기
 페이지를 5개씩 보이게 하고
@@ -78,13 +50,13 @@ Page와 Slice에 대한 고민
 모델어트리뷰트를 컨트롤러에 남기는거랑 한줄 통으로 보내는거랑 고민을 함
 현업에서의 가독성 이슈 등으로 컨트롤러에 남기고 html 타임리프에서 직관적이게 따서 쓰는 선택
 
-회원가입 버튼이 없고 있는 아이디라고 오류 멤버.java에 @컬럼 유니크를 유저네임에 추가하여 고침
+회원가입시 없는 아이디인데 중복된 아이디라고 오류 -> member.java에 @컬럼 유니크를 유저네임에 추가하여 고침
 
 갑자기 리스트에서 삭제버튼 눌러도 안 사라지네?
 페이지 추가기능떄문에 오류난줄 알았지만 csrf추가때문이었도 한참 허우적거리다가 발견함
 예외에 /delete도 넣어서 해결
 
-고치는 과정에서 리스트.html의 타임리프 문법도 더 정밀하게 고침 이전건 아무튼 우연히 굴러만 가는 코드였었음 (검사-네트워크 확인해보니)
+고치는 과정에서 list.html의 타임리프 문법도 더 정밀하게 고침 이전건 아무튼 우연히 굴러만 가는 코드였었음 (검사-네트워크 확인해보니)
 th:inline="javascript"를 추가해서 자바스크립트 문법을 더 단단하게 하고,
 || 파이프 리터럴 문법을 fetch부터 끝에 넣어서 내부의 타임리프 문법을 더 명확하게 하고
 '를 활용해서 내부의 문자열들이 혼합되지 않게 연결
@@ -99,9 +71,9 @@ DTO에서 변수와 생성자 순서 적어둔게
 
 이미지 업로드 과정
 AWS 버킷 생성과 권한 조절, 더 안전하게 사용자 IAM을 만들어 권한 설정 후 사용
-업로드하면 서버주소는 생기지만 미리보기 업로드가 안되어 JS수정들
+업로드하면 서버주소는 생기지만 미리보기 업로드가 안되어 JS수정하여 해결
 
-삼항연산자 실수로 리스트 실패
+삼항연산자 실수로 리스트 실패 -> 해결
 
 
 댓글 등록기능 제작
@@ -114,7 +86,7 @@ AWS 버킷 생성과 권한 조절, 더 안전하게 사용자 IAM을 만들어 
 자기가 작성한 댓글에만 삭제버튼 활성화되게 작성
 누르면 코멘트 아이디를 쏴줘서 삭제
 삭제 후 리다이렉트로 다시 그 상세페이지를 가게하려고 parentId도 같이 쏴주게 함
-리다이렉트를 쓰려면 타입을 String로 기존엔 ResponseEntity<String> 였음
+리다이렉트를 쓰려면 타입을 String로 변경 기존엔 ResponseEntity<String> 였음
 
 리스트의 css조절 (숫자 포매팅 등)
 
@@ -125,16 +97,16 @@ search api를 만드는데 api는 작동하지만 list 리턴시 500에러가 �
 왜 자꾸 검색 하면 500에러가 뜨는지 디버깅 한 결과
 검색 api에서 리턴으로 리스트를 갈 때
 페이지네이션용 타임리프에 모델 어트리뷰를 안해줬어서
-만들어둔 서비스 코드를 재활용해서 모델 어트리뷰트를 하여 해
+만들어둔 서비스 코드를 재활용해서 모델 어트리뷰트를 하여 해결
 
 검색해서 나온 페이지에서 2페이지를 가면 전체 리스트의 2페이지로 가는 현상
 타임리프에서 페이지네이션 each에 조건문을 추가
 
-회원가입 성공하고 로그인으로 리다이렉트시 회원가입 완료! 이런 문구가 뜨면 좋을거같아
+회원가입 성공하고 로그인으로 리다이렉트시 회원가입 완료! 이런 문구가 뜨면 좋을거같다
 
-서버 옮기기 노가다
+azure서버에서 AWS EC2로 옮기기
 
-ngram이 마리아DB로 시작했더니 안됨
+ngram이 마리아DB로 시작했더니 지원이 안 됨
 
 주문기능 만들기
 디테일에서 주문버튼 눌렀을때 히든으로 id값도 보내기와
@@ -188,5 +160,7 @@ AWS S3 이미지 업로드시 확장자와 최대용량 제한 걸기
 
 admin 권한을 탈취하려는 sql인젝션,xss공격 등을 방어하기 위해 스프링 시큐리티, html이스케이프(th:text등) csrf등의 방어 대책을 사용
 
+
+리캡챠 v3 백엔드 적용
 -->
 

@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.*;
 public class MemberController {
     private final MemberService memberService;
     private final MemberRepository memberRepository;
+    private final RecaptchaService recaptchaService;
+
     @GetMapping("/signup")
     String signup(Authentication auth){
         if (auth != null && auth.isAuthenticated()) {
@@ -28,6 +30,12 @@ public class MemberController {
         String password = request.getParameter("password");
         String passwordConfirm = request.getParameter("passwordConfirm");
         String email = request.getParameter("email");
+        String recaptchaToken = request.getParameter("g-recaptcha-response");
+
+        if (!recaptchaService.verifyToken(recaptchaToken)) {
+            model.addAttribute("error", "reCAPTCHA 인증에 실패했습니다. 다시 시도해 주세요.");
+            return "signup";
+        }
 
         String error = memberService.signup(username, password, passwordConfirm, email);
 
