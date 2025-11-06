@@ -114,7 +114,7 @@ public class ItemController {
                 return "redirect:/";
             }
             model.addAttribute("data", result.get());
-            return "/edit";
+            return "edit";
         } else {
             return "redirect:/";
         }
