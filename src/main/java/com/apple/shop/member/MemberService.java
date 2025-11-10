@@ -32,7 +32,7 @@ public class MemberService {
         member.setEmail(email);
         member.setRole("USER");
         memberRepository.save(member);
-        return null; // 에러 없음!
+        return null;
     }
     public MemberDTO getMyPageDto(String username) {
         Member member = memberRepository.findByUsername(username)

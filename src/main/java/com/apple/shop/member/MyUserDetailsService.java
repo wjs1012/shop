@@ -25,7 +25,7 @@ public class MyUserDetailsService implements UserDetailsService {
         }
         var user = result.get();
 
-        String role = user.getRole(); // 예: "USER" 또는 "ADMIN"
+        String role = user.getRole(); //USER 또는 ADMIN
         if (role == null) role = "USER"; // NULL을 USER로 디폴트
         List<GrantedAuthority> authorities = new ArrayList<>();
 

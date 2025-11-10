@@ -52,7 +52,7 @@
             <div class="comment-meta">
                 <span class="comment-username" th:text="${c.username}"></span>
                 <span class="comment-date" th:text="${#temporals.format(c.createdAt, 'yyyy-MM-dd HH:mm')}"></span>
-                <!-- 관리자거나 본인 댓글이면 "삭제" 버튼 표시 -->
+                <!-- 관리자거나 본인 댓글일 때 삭제 버튼 표시 -->
                 <form th:if="${#authorization.expression('hasRole(''ADMIN'')') or c.username == #authentication.name}" action="/comment/delete" method="post" style="display:inline;">
                     <input type="hidden" name="id" th:value="${c.id}">
                     <input type="hidden" name="parentId" th:value="${c.parentId}">
