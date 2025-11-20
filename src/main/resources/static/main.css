@@ -1,42 +1,62 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800&display=swap');
 
-/* --- 박스사이징 초기화--- */
-*, *::before, *::after { box-sizing: border-box; }
 
-/* --- 기본 인풋&버튼 --- */
-input, button {
+/* 박스사이징 통일 */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* 기본 인풋 & 버튼 */
+input,
+button {
     padding: 8px 13px;
     margin-top: 5px;
     border: 1px solid grey;
     border-radius: 4px;
     vertical-align: middle;
 }
-input { display: block; }
+input {
+    display: block;
+}
 button {
     background: black;
     color: white;
     border: none;
 }
 
-/* --- 버튼 계열: 색상, 변형, 공통 --- */
+
 .btn {
     margin: 0 0 0 10px;
 }
-.btn-blue, a.btn-blue, .nav a.btn-blue, .nav button.btn-blue {
+
+.btn-blue,
+a.btn-blue,
+.nav a.btn-blue,
+.nav button.btn-blue {
     background: #1976d2 !important;
     color: #fff !important;
     border: none;
 }
-.btn-blue:hover { background: #145ca2; }
+.btn-blue:hover {
+    background: #145ca2;
+}
+
 .btn-border {
     border: 1.5px solid #e4eaf2;
     background: #fff;
     color: #277ac7;
 }
-.btn-border:hover { background: #e6f0fa; }
-.btn-gray { background: #f5f5f5; color: #555 !important; }
+.btn-border:hover {
+    background: #e6f0fa;
+}
 
-/* --- 카드 섹션 --- */
+.btn-gray {
+    background: #f5f5f5;
+    color: #555 !important;
+}
+
+/* 상품 목록 카드 */
+
 .card {
     margin: 30px auto;
     display: flex;
@@ -47,13 +67,16 @@ button {
     transition: 0.15s;
 }
 .card a {
-    text-decoration: none;  /* 밑줄 제거 */
+    text-decoration: none;
     color: inherit;
     transition: background 0.16s, color 0.17s;
     padding: 2px 4px;
     border-radius: 6px;
 }
-.card a:visited, .card a:active { color: inherit; }
+.card a:visited,
+.card a:active {
+    color: inherit;
+}
 .card a:hover {
     background: #f4f8fd;
     color: #1976d2;
@@ -61,10 +84,17 @@ button {
 .card h4 {
     margin-bottom: 7px;
 }
-.card img { width: 150px; margin-right: 20px; }
-.card p { margin-top: 0; margin-bottom: 0; }
+.card img {
+    width: 150px;
+    margin-right: 20px;
+}
+.card p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
 
-/* --- 댓글 관련 --- */
+/* 댓글 영역 */
+
 .comment-box {
     display: flex;
     justify-content: center;
@@ -82,7 +112,9 @@ button {
     transition: background 0.2s;
     align-self: flex-end;
 }
-.comment-btn:hover { background: #145ca2; }
+.comment-btn:hover {
+    background: #145ca2;
+}
 .comment-form {
     display: flex;
     flex-direction: column;
@@ -110,13 +142,26 @@ button {
     margin: 0 auto 50px auto;
     background: #fff;
     border-radius: 8px;
-    box-shadow: 0 2px 10px 0 rgba(90,100,130,0.08);
+    box-shadow: 0 2px 10px 0 rgba(90, 100, 130, 0.08);
     padding: 28px 32px 18px 32px;
 }
-.comment-list h4 { font-size: 18px; font-weight: 700; margin-bottom: 18px; }
-.comment-list ul { list-style: none; padding: 0; margin: 0; }
-.comment-item { border-bottom: 1px solid #f0f0f0; padding: 15px 0 11px 0; }
-.comment-item:last-child { border-bottom: none; }
+.comment-list h4 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 18px;
+}
+.comment-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.comment-item {
+    border-bottom: 1px solid #f0f0f0;
+    padding: 15px 0 11px 0;
+}
+.comment-item:last-child {
+    border-bottom: none;
+}
 .comment-meta {
     display: flex;
     align-items: center;
@@ -125,8 +170,14 @@ button {
     color: #53597a;
     margin-bottom: 4px;
 }
-.comment-username { font-weight: 600; color: #3070c7; }
-.comment-date { color: #b0b8c9; font-size: 13px; }
+.comment-username {
+    font-weight: 600;
+    color: #3070c7;
+}
+.comment-date {
+    color: #b0b8c9;
+    font-size: 13px;
+}
 .comment-delete {
     background: #fff;
     border: 1px solid #d8dde3;
@@ -138,14 +189,44 @@ button {
     cursor: pointer;
     transition: background 0.15s;
 }
-.comment-delete:hover { background: #ffeaea; }
-.comment-content { font-size: 16px; color: #222; white-space: pre-wrap; margin-left: 2px; }
+.comment-delete:hover {
+    background: #ffeaea;
+}
+.comment-content {
+    font-size: 16px;
+    color: #222;
+    white-space: pre-wrap;
+    margin-left: 2px;
+}
 
-/* --- 상세페이지 --- */
-.detail { text-align: center; margin-bottom: 26px; }
-.detail img { max-width: 30%; display: block; margin: auto; }
+/* 상세 페이지 */
 
-/* --- 이미지 업로드 / 미리보기 --- */
+.detail {
+    text-align: center;
+    margin-bottom: 26px;
+}
+.detail img {
+    max-width: 30%;
+    display: block;
+    margin: auto;
+}
+
+/* 이미지 업로드 & 미리보기 */
+
+image-upload {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+/* 폼 내 업로드 영역 */
+.image-upload {
+    width: 100%;
+    margin-bottom: 16px;
+}
+
+/* 미리보기 박스 */
 .image-preview {
     width: 150px;
     height: 150px;
@@ -157,27 +238,53 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 0 auto 10px auto;
 }
-.image-preview img { width: 100%; height: 100%; object-fit: cover; }
-.preview-placeholder { color: #999; font-size: 14px; text-align: center; position: absolute; }
-.file-btn {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border-radius: 6px;
-    cursor: pointer;
+.image-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.preview-placeholder {
+    color: #999;
     font-size: 14px;
-}
-.file-btn input[type="file"] { display: none; }
-image-upload {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
+    text-align: center;
+    position: absolute;
 }
 
-/* --- 네비게이션/상단바 --- */
+/* 파일 선택 버튼 공통 */
+.file-btn,
+.form-btn {
+    display: block;
+    width: 100%;
+    padding: 13px 0;
+    border-radius: 7px;
+    font-size: 17px;
+    font-weight: 700;
+    text-align: center;
+    box-sizing: border-box;
+    margin-top: 10px;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+/* 파일 선택 버튼 스타일 */
+.file-btn {
+    background: #f7fafd;
+    color: #1976d2;
+    border: 1.5px solid #d6e6ff;
+    cursor: pointer;
+    transition: background 0.16s;
+}
+.file-btn:hover {
+    background: #ebeef8;
+}
+.file-btn input[type="file"] {
+    display: none;
+}
+
+/* 네비 바 */
+
 .logo {
     font-size: 24px;
     font-weight: 800;
@@ -186,34 +293,39 @@ image-upload {
     letter-spacing: -1px;
     user-select: none;
 }
+
 .nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 14px 36px;
     background: #fff;
-    box-shadow: 0 2px 8px rgba(80,80,100,0.08);
+    box-shadow: 0 2px 8px rgba(80, 80, 100, 0.08);
     font-family: 'Montserrat', sans-serif;
     position: relative;
     z-index: 10000;
-    /*flex-wrap: nowrap; */
-}
-.nav-left, .nav-right {
-display: flex;
-align-items: center;
-gap: 20px;
-flex-basis: auto;
+    /*flex-wrap: nowrap;*/
 }
 
-/* PC 메뉴 기본 노출, 모바일에서 숨김 */
+.nav-left,
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-basis: auto;
+}
+
+/* PC 메뉴 */
 .pc-menu {
-  display: flex;
-}
-.mobile-menu {
-  display: none;
+    display: flex;
 }
 
-/* 모바일 전용 로고 + 햄버거 버튼 */
+/* 모바일 메뉴 기본 숨김 */
+.mobile-menu {
+    display: none;
+}
+
+/* 모바일 전용 로고 */
 .nav-mobile-left {
     display: none;
     align-items: center;
@@ -223,51 +335,137 @@ flex-basis: auto;
     box-sizing: border-box;
 }
 
-/* 모바일에서 적용 */
+/* 공통 링크 & 버튼 스타일 */
+.nav a,
+.nav button {
+    text-decoration: none;
+    border: none;
+    background: none;
+    color: #303030;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 6px 14px;
+    transition: color 0.2s, background 0.2s, border 0.2s;
+    border-radius: 6px;
+    margin: 0 2px;
+    outline: none;
+}
+
+/* 호버 효과 */
+.nav a:hover,
+.nav button:hover {
+    background: #f1f5fa;
+    color: #007bff;
+}
+
+/* 로고 전용 스타일 (nav 내부) */
+.nav .logo {
+    font-weight: 900;
+    font-size: 24px;
+    color: #222222;
+    letter-spacing: -1px;
+    user-select: none;
+}
+
+/* 로그인 상태 영역 (sec:authorize 사용) */
+.nav div[sec\:authorize="isAuthenticated()"] {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    color: #666666;
+}
+
+.nav-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 15px;
+}
+.username {
+    font-weight: 700;
+    color: #505974;
+}
+
+/* 로그아웃 버튼 등 */
+.nav form button {
+    padding: 6px 14px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.nav form button:hover {
+    background-color: #0056b3;
+}
+
+/* 비로그인 상태 & 회원가입 링크 */
+.nav div[sec\:authorize="isAnonymous()"],
+.nav a[href="/signup"] {
+    margin-left: auto;
+    font-weight: 600;
+    font-size: 15px;
+    color: #007bff;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+.nav div[sec\:authorize="isAnonymous()"]:hover,
+.nav a[href="/signup"]:hover {
+    color: #0056b3;
+}
+
+/* 모바일 설정 */
+
 @media (max-width: 768px) {
     /* PC 메뉴 숨김 */
     .pc-menu {
         display: none;
     }
+
     .nav {
         padding-left: 0;
         padding-right: 0;
-      }
-      .nav-mobile-left {
-          display: flex !important;
-          position: relative;
-          justify-content: space-between !important;
-          align-items: center !important;
-          width: 100% !important;
-          padding-left: 10px;
-          padding-right: 10px;
-          margin-left: 0 !important;
-          margin-right: 0 !important;
-          box-sizing: border-box;
-  }
-
-  .nav-toggle {
-      display: block !important;
-              margin: 0 !important;
-              padding: 0 !important;
-              flex-shrink: 0 !important;
-              font-size: 28px !important;
-              cursor: pointer;
-              background: none;
-              border: none;
-              position: relative;
-              order: 2;  /* 오른쪽 */
-              margin-left: auto !important; /* 여기가 핵심: 버튼을 오른쪽 끝으로 밀어줌 */
-              z-index: 13000;
-              font-size: 28px;
     }
 
-.nav-mobile-left .logo {
-   margin: 0 !important;
-           order: 1; /* 로고는 왼쪽 끝 순서 */
-  }
+    /* 모바일 상단 (로고 + 햄버거) */
+    .nav-mobile-left {
+        display: flex !important;
+        position: relative;
+        justify-content: space-between !important;
+        align-items: center !important;
+        width: 100% !important;
+        padding-left: 10px;
+        padding-right: 10px;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        box-sizing: border-box;
+    }
 
-    /* 모바일 햄버거 메뉴 스타일 (우측에서 슬라이드 가능) */
+    .nav-toggle {
+        display: block !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        flex-shrink: 0 !important;
+        font-size: 28px !important;
+        cursor: pointer;
+        background: none;
+        border: none;
+        position: relative;
+        order: 2;  /* 오른쪽 */
+        margin-left: auto !important;
+        z-index: 13000;
+    }
+
+    .nav-mobile-left .logo {
+        margin: 0 !important;
+        order: 1; /* 로고는 왼쪽 */
+    }
+
+    /* 모바일 햄버거 메뉴 (우측 슬라이드) */
     .mobile-menu {
         display: none;
         flex-direction: column;
@@ -281,14 +479,14 @@ flex-basis: auto;
         background-color: #fff;
         box-sizing: border-box;
         box-shadow: -3px 0 8px rgba(0, 0, 0, 0.15);
-        padding: 0px 0px 0px;
+        padding: 0;
         z-index: 12000;
         overflow-y: auto;
         transition: transform 0.3s ease;
         transform: translateX(100%);
     }
 
-    /* 메뉴 활성화 시 화면 보이기 */
+    /* 메뉴 활성화 */
     .mobile-menu.active {
         display: flex;
     }
@@ -317,83 +515,8 @@ flex-basis: auto;
     }
 }
 
-.nav a {
-    color: #333333;
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 16px;
-    transition: color 0.3s ease;
-}
+/* 페이지네이션 */
 
-.nav a:hover, .nav button:hover {
-background: #f1f5fa;
-color: #007bff;
-}
-
-.nav a, .nav button {
-    text-decoration: none;
-    border: none;
-    background: none;
-    color: #303030;
-    font-size: 16px;
-    font-weight: 500;
-    padding: 6px 14px;
-    transition: color 0.2s, background 0.2s, border 0.2s;
-    border-radius: 6px;
-    margin: 0 2px;
-    outline: none;
-}
-/* 링크 호버효과 */
-.nav a:hover { color: #007bff; }
-.nav .logo {
-    font-weight: 900;
-    font-size: 24px;
-    color: #222222;
-    letter-spacing: -1px;
-    user-select: none;
-}
-/* 로그인 상태 영역 */
-.nav div[sec\:authorize="isAuthenticated()"] {
-    margin-left: auto;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 14px;
-    color: #666666;
-}
-.nav-info {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 15px;
-}
-.username { font-weight: 700; color: #505974; }
-/* 버튼 스타일 */
-.nav form button {
-    padding: 6px 14px;
-    background-color: #007bff;
-    border: none;
-    border-radius: 4px;
-    color: white;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-.nav form button:hover { background-color: #0056b3; }
-/* 로그인/회원가입 영역 */
-.nav div[sec\:authorize="isAnonymous()"],
-.nav a[href="/signup"] {
-    margin-left: auto;
-    font-weight: 600;
-    font-size: 15px;
-    color: #007bff;
-    cursor: pointer;
-    transition: color 0.3s ease;
-}
-.nav div[sec\:authorize="isAnonymous()"]:hover,
-.nav a[href="/signup"]:hover { color: #0056b3; }
-
-/* --- 페이지네이션 --- */
 .pagination {
     display: flex;
     gap: 6px;
@@ -401,7 +524,8 @@ color: #007bff;
     align-items: center;
     margin-top: 30px;
 }
-.pagination a, .pagination span.dots {
+.pagination a,
+.pagination span.dots {
     display: inline-block;
     padding: 6px 14px;
     border-radius: 4px;
@@ -411,7 +535,9 @@ color: #007bff;
     background: #f5f5f5;
     transition: background 0.2s;
 }
-.pagination a:hover:not(.active):not(.arrow) { background: #e0e0e0; }
+.pagination a:hover:not(.active):not(.arrow) {
+    background: #e0e0e0;
+}
 .pagination a.active {
     background: #1976d2;
     color: #fff;
@@ -424,22 +550,29 @@ color: #007bff;
     font-weight: bold;
     cursor: pointer;
 }
-.pagination a.arrow:hover { background: #e0e0e0; }
+.pagination a.arrow:hover {
+    background: #e0e0e0;
+}
 .pagination .dots {
     background: none;
     cursor: default;
     color: #aaa;
 }
-/* ------ [폼/회원가입/로그인 등 공통 폼 스타일] ------ */
+
+/* 로그인/회원가입/글쓰기 공통 */
+
 .form-wrap {
     width: 400px;
-    margin: 40px auto 40px auto;
+    margin: 40px auto;
     background: #fff;
     border-radius: 12px;
-    box-shadow: 0 4px 16px rgba(60,90,160,0.10);
+    box-shadow: 0 4px 16px rgba(60, 90, 160, 0.1);
     padding: 38px 44px 32px 44px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
 }
+
 .form-wrap h2 {
     margin-bottom: 28px;
     font-size: 22px;
@@ -447,6 +580,7 @@ color: #007bff;
     color: #2c3983;
     letter-spacing: -1px;
 }
+
 .form-input {
     width: 100%;
     padding: 13px 16px;
@@ -463,14 +597,24 @@ color: #007bff;
     background: #fff;
     outline: none;
 }
+
+/* 메인 액션 버튼 (로그인/회원가입 제출 등) */
 .form-btn {
-    width: 100%;
-    margin-top: 7px;
-    font-size: 17px;
-    font-weight: 700;
-    padding: 13px 0px;
-    border-radius: 7px;
+    background: #1976d2;
+    color: #fff;
+    border: none;
+    transition: background 0.18s;
 }
+.form-btn:hover {
+    background: #145ca2;
+}
+
+/* 폼 내부 업로드 영역 간격 */
+.form-wrap .image-upload {
+    margin-bottom: 18px;
+}
+
+/* 폼 에러 / 힌트 메시지 */
 .form-error {
     color: #e34242;
     font-size: 15px;
@@ -481,20 +625,11 @@ color: #007bff;
     font-size: 14px;
     margin: 12px 0 0;
 }
-.image-upload {
-    width: 100%;
-    margin-bottom: 16px;
-}
-.image-preview {
-    margin: 0 auto 10px auto;
-}
-.file-btn {
-    margin-top: 6px;
-    width: 100%;
-    text-align: center;
-}
 
-/* ------ [마이페이지 전용] ------ */
+/* =========================================
+   My Page
+========================================= */
+
 .mypage-box {
     max-width: 400px;
     min-height: 260px;
@@ -504,8 +639,8 @@ color: #007bff;
     justify-content: space-between;
     align-items: center;
     min-width: 260px;
-        margin-bottom: 17px;
-        font-size: 17px;
+    margin-bottom: 17px;
+    font-size: 17px;
 }
 .mypage-label {
     font-weight: 600;
@@ -521,107 +656,61 @@ color: #007bff;
     font-weight: 600;
 }
 .mypage-row span:last-child {
-    text-align: right;      /* 오른쪽 정렬 */
-    flex: 1;                /* 남는 공간 꽉 채워서 우측 끝! */
-    /* 필요에 따라 min-width: 0; 추가 가능 */
+    text-align: right;
+    flex: 1;
 }
-/* ------ [에디트/글작성 버튼+입력창 너비 조정] ------ */
-.form-wrap .form-btn,
-.form-wrap .file-btn { width: 100%; }
 
-.form-wrap .image-upload { margin-bottom: 18px; }
-
-.form-wrap {
-    width: 400px;
-    margin: 40px auto;
-    display: flex;
-    flex-direction: column;
-}
-.file-btn, .form-btn {
-    display: block;
-    width: 100%;
-    padding: 13px 0;
-    border-radius: 7px;
-    font-size: 17px;
-    font-weight: 700;
-    text-align: center;
-    box-sizing: border-box;
-    margin-top: 10px;
-    margin-left: 0;
-    margin-right: 0;
-}
-.file-btn {
-    background: #f7fafd;
-    color: #1976d2;
-    border: 1.5px solid #d6e6ff;
-    cursor: pointer;
-    transition: background 0.16s;
-}
-.file-btn:hover { background: #ebeef8; }
-.file-btn input[type="file"] { display: none; }
-
-.form-btn {
-    background: #1976d2;
-    color: #fff;
-    border: none;
-    transition: background 0.18s;
-}
-.form-btn:hover { background: #145ca2; }
+/* 네이버 쇼핑 스타일 버튼 (결제/연동 등) */
 
 .naver-buy-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: #03C75A; /* 더 선명한 네이버 그린 */
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-weight: 700;
-  font-size: 18px;
-  padding: 14px 32px;
-  cursor: pointer;
-  margin: 0 auto;
-  box-shadow: 0 3px 9px rgba(0,0,0,0.1);
-  transition: background 0.2s ease;
-  gap: 8px;                /* 아이콘과 텍스트 간격 */
-  width: max-content;      /* 내용만큼 가로폭 조절 */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #03c75a;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 18px;
+    padding: 14px 32px;
+    cursor: pointer;
+    margin: 0 auto;
+    box-shadow: 0 3px 9px rgba(0, 0, 0, 0.1);
+    transition: background 0.2s ease;
+    gap: 8px;
+    width: max-content;
 }
-
 .naver-buy-btn:hover {
-  background: #02b151;
+    background: #02b151;
 }
-
 .naver-icon {
-  background-color: white;
-  color: #03C75A;
-  font-weight: 900;
-  width: 24px;
-  height: 24px;
-  font-size: 1rem;
-  border-radius: 50%;
-  margin-right: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Montserrat', sans-serif;
+    background-color: white;
+    color: #03c75a;
+    font-weight: 900;
+    width: 24px;
+    height: 24px;
+    font-size: 1rem;
+    border-radius: 50%;
+    margin-right: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
 }
 
-/* 주문 목록 페이지 전체 컨테이너 */
+/* 주문 목록 테이블 */
+
 .order-list-container {
     max-width: 1000px;
     margin: 50px auto;
     padding: 20px;
 }
-
-/* 테이블 스타일 */
 .order-list-container table {
     width: 100%;
     border-collapse: collapse;
     background-color: #fff;
     font-size: 14px;
 }
-
-/* 테이블 헤더 */
 .order-list-container th {
     background-color: #f5f5f5;
     padding: 12px;
@@ -629,34 +718,27 @@ color: #007bff;
     text-align: center;
     font-weight: bold;
 }
-
-/* 테이블 데이터 셀 */
 .order-list-container td {
     padding: 10px;
     border-bottom: 1px solid #eee;
     text-align: center;
 }
-
-/* 짝수 행 배경색 */
 .order-list-container tbody tr:nth-child(even) {
     background-color: #fafafa;
 }
-
-/* 행 hover 시 색상 */
 .order-list-container tbody tr:hover {
-    background-color: #f0f8ff; /* 살짝 파스텔 톤 하이라이트 */
+    background-color: #f0f8ff;
 }
-
-/* 제목 h2 */
 .order-list-container h2 {
     margin-bottom: 20px;
     text-align: left;
     color: #333;
     font-weight: bold;
 }
+
 /* 상품 목록 사진 사이즈 조절 */
 .product-image {
-  width: 150px !important;
-  height: 150px !important;
-  object-fit: cover !important;
+    width: 150px !important;
+    height: 150px !important;
+    object-fit: cover !important;
 }

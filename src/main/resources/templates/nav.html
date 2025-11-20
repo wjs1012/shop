@@ -1,6 +1,6 @@
 <div class="nav" th:fragment="navbar" xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
     <div class="nav-left pc-menu">
-        <a class="logo" href="/">SpringMall</a>
+        <a class="logo" href="/">FunnyMall</a>
         <a href="/list">List</a>
         <li style="list-style: none;" th:if="${#authentication.principal != null and #authorization.expression('hasRole(''ADMIN'')')}">
             <a href="/write">Write</a>
