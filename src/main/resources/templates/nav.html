@@ -29,8 +29,9 @@
         </div>
         <div sec:authorize="isAnonymous()">
             <a href="/login" class="btn btn-blue">로그인</a>
+            <a href="/signup" class="btn btn-border">회원가입</a>
         </div>
-        <a href="/signup" class="btn btn-border">회원가입</a>
+
     </div>
 
     <!-- 모바일 전용 햄버거 메뉴 -->
@@ -43,6 +44,6 @@
             <button type="submit">로그아웃</button>
         </form>
         <a href="/login" sec:authorize="isAnonymous()">로그인</a>
-        <a href="/signup">회원가입</a>
+        <a href="/signup" sec:authorize="isAnonymous()">회원가입</a>
     </nav>
 </div>

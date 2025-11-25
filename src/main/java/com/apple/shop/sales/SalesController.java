@@ -29,10 +29,14 @@ public class SalesController {
     String orderItem(@RequestParam("itemId") long itemId, Authentication auth) {
         String username = auth.getName();
 
-            salesService.createOrder(itemId, username);
+            boolean ordered = salesService.createOrder(itemId, username);
 
-            return "redirect:/detail/" + itemId + "?ordered=true";
+            if(ordered) {
+                return "redirect:/detail/" + itemId + "?ordered=true";
+            }
+            return "redirect:/detail/" + itemId + "?soldout=true";
         }
+
 //    @GetMapping("/order/all")
 //    String getOrderAll(){
 //        List<Sales> result = salesRepository.customFindAll();

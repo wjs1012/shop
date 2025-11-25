@@ -420,7 +420,7 @@ image-upload {
 
 /* 모바일 설정 */
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     /* PC 메뉴 숨김 */
     .pc-menu {
         display: none;
@@ -482,6 +482,7 @@ image-upload {
         padding: 0;
         z-index: 12000;
         overflow-y: auto;
+        overflow-x: hidden;
         transition: transform 0.3s ease;
         transform: translateX(100%);
     }

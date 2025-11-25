@@ -160,7 +160,7 @@ public class ItemController {
         if (auth == null || !auth.isAuthenticated()) {
             return "redirect:/login?needLogin";
         }
-        List<Comment> comments = commentRepository.findAllByParentId(id.longValue());
+        List<Comment> comments = commentRepository.findTop10ByParentIdOrderByCreatedAtDesc(id.longValue());
             model.addAttribute("comments", comments);
 
         Optional<Item> result = itemRepository.findById(id.longValue());

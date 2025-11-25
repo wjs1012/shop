@@ -31,6 +31,10 @@
      style="font-size: 18px; font-weight: 600; text-align: center; margin-top: 20px; color: #00bbff;">
     주문이 완료되었습니다!
 </div>
+<div class="form-hint" th:if="${param.soldout}"
+     style="font-size: 18px; font-weight: 600; text-align: center; margin-top: 20px; color: #ff0000;">
+    재고가 부족합니다.
+</div>
 
 
 

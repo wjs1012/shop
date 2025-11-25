@@ -20,26 +20,33 @@ public class SalesService {
     private final SalesRepository salesRepository;
 
     @Transactional
-    public void createOrder(Long itemId, String username) {
+    public boolean createOrder(Long itemId, String username) {
         Optional<Member> memberOpt = memberRepository.findByUsername(username);
         Optional<Item> itemOpt = itemRepository.findById(itemId);
+        boolean ordered = false;
+
         if (memberOpt.isPresent() && itemOpt.isPresent()) {
             Member member = memberOpt.get();
             Item item = itemOpt.get();
 
-            // 주문 정보
-            Sales sales = new Sales();
-            sales.setItemName(item.getTitle());
-            sales.setPrice(item.getPrice());
-            sales.setCount(1);
-            item.setCount(item.getCount() - 1);
-            sales.setMember(member);
+            if (item.getCount() != null && item.getCount() > 0 ) {
 
-            salesRepository.save(sales);
-        }
+                // 주문 정보
+                Sales sales = new Sales();
+                sales.setItemName(item.getTitle());
+                sales.setPrice(item.getPrice());
+                sales.setCount(1);
+                item.setCount(item.getCount() - 1);
+                sales.setMember(member);
+
+                salesRepository.save(sales);
+
+                ordered = true;
+            }
+        } return ordered;
     }
 
     public List<Sales> getAllOrders() {
-        return salesRepository.findAll();
+        return salesRepository.findAllByOrderByCreatedDesc();
     }
 }
